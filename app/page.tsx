@@ -3,6 +3,7 @@
 import { Thermometer, Droplets, AlertCircle } from 'lucide-react'
 import { useSmartHome } from '@/hooks/useSmartHome'
 import { useEventLog } from '@/hooks/useEventLog'
+import { useAlarmSound } from '@/hooks/useAlarmSound'
 import { temperatureStatus, humidityStatus, gasStatus } from '@/lib/sensorStatus'
 import Navbar from '@/components/Navbar'
 import SensorCard from '@/components/SensorCard'
@@ -28,6 +29,7 @@ export default function DashboardPage() {
   } = useSmartHome()
 
   const logEntries = useEventLog(gasAlarm, lightOn, loading)
+  useAlarmSound(gasAlarm)
 
   const tempStatus = temperatureStatus(temperature)
   const humStatus = humidityStatus(humidity)
